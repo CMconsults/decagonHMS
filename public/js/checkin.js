@@ -23,7 +23,7 @@ $('.addCheckinBtn').click(function (event) {
 $.ajax({
   method: 'POST',
   url: 'http://localhost:3000/checkin',
-  data: {
+    data: {
     cardnumber,
     surname,
     othername,
@@ -122,6 +122,26 @@ $.ajax({
 
   //-----End of Search Function For Checkedin Patient---------
 
+
+  //-----Show Patient History
+  $.ajax({
+    method: 'GET',
+    url: `http://localhost:3000/checkin`,
+
+    success: function (response) {
+
+      response.forEach(element => {
+        $(".outputTablePatientHistory").prepend(`<tr>        
+        <td>${element.cardnumber}</td>
+        <td>${element.surname}</td>
+         <td>${element.othername}</td>
+         <td>${element.reasonforvisit}</td>
+         <td>${element.doctorassigned}</td>      
+         </tr>
+         `);
+      });
+    },
+  });
 
 
 
