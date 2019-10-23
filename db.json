@@ -64,5 +64,24 @@
       "id": 8
     }
   ],
-  "appointments": []
+  "checkin": [
+    {
+      "cardnumber": "2045",
+      "surname": "MESHACH",
+      "othername": "ade",
+      "reasonforvisit": "Stomach Ache",
+      "doctorassigned": "Dr. Babalola",
+      "dateandtime": "2019-10-23T14:32",
+      "id": 1
+    },
+    {
+      "cardnumber": "2026",
+      "surname": "Adewumih",
+      "othername": "Ednut",
+      "reasonforvisit": "HeadAche",
+      "doctorassigned": "Dr. Femi",
+      "dateandtime": "2019-10-23T14:39",
+      "id": 2
+    }
+  ]
 }
