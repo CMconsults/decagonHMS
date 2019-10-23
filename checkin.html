@@ -74,26 +74,26 @@
           <span class="nav-color">View All Patient</span></a>
       </li>
       <li class="nav-item">
-          <a class="nav-link" href="./checkin.html">
-            <i class="fa fa-calendar"></i>
-            <span class="nav-color">Checkin Patient</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="./patientcheckedin.html">
-            <i class="fa fa-info"></i>
-            <span class="nav-color">Patients Checkedin</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="./checkinouthistory.html">
-            <i class="fa fa-history"></i>
-            <span class="nav-color">Checkin & Checkout History</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="./patienthistory.html">
-            <i class="fa fa-book"></i>
-            <span class="nav-color">Patient History</span></a>
-        </li>
-        
+        <a class="nav-link" href="./checkin.html">
+          <i class="fa fa-calendar"></i>
+          <span class="nav-color">Checkin Patient</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="./patientcheckedin.html">
+          <i class="fa fa-info"></i>
+          <span class="nav-color">Patients Checkedin</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="./checkinouthistory.html">
+          <i class="fa fa-history"></i>
+          <span class="nav-color">Checkin & Checkout History</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="./patienthistory.html">
+          <i class="fa fa-book"></i>
+          <span class="nav-color">Patient History</span></a>
+      </li>
+      
     </ul>
     <!-- This is where the main features are inserted -->
     <div id="content-wrapper">
@@ -103,9 +103,15 @@
             <div class="row justify-content-center">
               <div class="col-md-8">
                 <div class="card">
-                  <div class="card-header">Add New Patient</div>
+                  <div class="card-header">Checkin A Patient</div>
                   <div class="card-body">
                     <form name="my-form" onsubmit="" action="" method="">
+                        <div class="form-group row">
+                          <label for="cardnumber" class="col-md-4 col-form-label text-md-right">Card Number</label>
+                          <div class="col-md-6">
+                            <input type="text" id="cardnumber" class="form-control" name="cardnumber" required="required">
+                          </div>
+                        </div>
                       <div class="form-group row">
                         <label for="Surname" class="col-md-4 col-form-label text-md-right">Surname</label>
                         <div class="col-md-6">
@@ -120,56 +126,38 @@
                       </div>
 
                       <div class="form-group row">
-                        <label for="email_address" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
-                        <div class="col-md-6">
-                          <input type="text" id="emailaddress" class="form-control" name="emailaddress"
-                            required="required">
+                          <label for="visit_reason" class="col-md-4 col-form-label text-md-right">Reason For Visit</label>
+                          <div class="col-md-6">
+                            <input type="text" id="reasonVisit" class="form-control" name="reasonVisit" required="required">
+                          </div>
                         </div>
-                      </div>
 
-                      <div class="form-group row">
-                        <label for="dob" class="col-md-4 col-form-label text-md-right">Date of Birth</label>
-                        <div class="col-md-6">
-                          <input type="date" id="dob" class="form-control" name="dob" required="required">
-                        </div>
-                      </div>
+                        <div class="form-group row">
+                            <label for="doctor_assigned" class="col-md-4 col-form-label text-md-right">Doctor Assigned</label>
+                            <div class="col-md-6">
+                              <input type="text" id="doctorAssigned" class="form-control" name="doctorAssigned" required="required">
+                            </div>
+                          </div>
 
-                      <div class="form-group row">
-                        <label for="phone_number" class="col-md-4 col-form-label text-md-right">Phone Number</label>
-                        <div class="col-md-6">
-                          <input type="text" id="phonenumber" class="form-control" name="phonenumber"
-                            required="required">
-                        </div>
-                      </div>
+                          <div class="form-group row">
+                            <label for="checkin_date_time" class="col-md-4 col-form-label text-md-right">Date/Time</label>
+                            <div class="col-md-6">
+                              <input type="datetime-local" id="checkinDateTime" class="form-control" name="checkinDateTime" required="required">
+                            </div>
+                          </div>
 
-                      <div class="form-group row">
-                        <label for="present_address" class="col-md-4 col-form-label text-md-right">Present
-                          Address</label>
-                        <div class="col-md-6">
-                          <input type="text" id="presentaddress" class="form-control" name="presentaddress"
-                            required="required">
-                        </div>
-                      </div>
+                          <!-- <div class="form-group row">
+                              <label for="doctor_assigned" class="col-md-4 col-form-label text-md-right">Status</label>
+                              <div class="col-md-6">
+                                  <input type="radio" name="status" value="CheckedIn"> Checked In<br>
+                                  <input type="radio" name="status" value="CheckedOut"> Checked Out<br>
+                              </div>
+                            </div> -->
 
-                      <div class="form-group row">
-                        <label for="permanent_address" class="col-md-4 col-form-label text-md-right">Permanent
-                          Address</label>
-                        <div class="col-md-6">
-                          <input type="text" id="permanentaddress" class="form-control" name="permanentaddress"
-                            required="required">
-                        </div>
-                      </div>
-
-                      <div class="form-group row">
-                        <label for="cardnumber" class="col-md-4 col-form-label text-md-right">Card Number</label>
-                        <div class="col-md-6">
-                          <input type="text" id="cardnumber" class="form-control" name="cardnumber" required="required">
-                        </div>
-                      </div>
-
+                     
                       <div class="col-md-6 offset-md-4">
-                        <button type="submit" class="addSubmitBtn btn btn-primary ">
-                          Save
+                        <button type="submit" class="addCheckinBtn btn btn-primary ">
+                          Checkin
                         </button>
                         <button type="submit" class="btn btn-primary exitBtn" onclick="window.location.href = './admin.html';">
                           Exit
