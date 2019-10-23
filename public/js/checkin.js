@@ -70,15 +70,57 @@ $.ajax({
          </tr>
          `);
       });
-
-
-
-
     },
-
-
   });
 
+  //---Endo fo Show Checkedin Patient Function---------
+
+  //-------Search Checkedin Patient---------------
+
+  $('.searchForm').submit(function () {
+    event.preventDefault();
+    const searchInput = $('#searchInput').val().trim();
+    $('.searchMessageCheckedin').html(''); //Done so that it removes the error message of the invalid card number
+
+
+    if (!searchInput) {
+      $('.searchMessageCheckedin').html('Kindly a valid card number');
+      return;
+    }
+
+    $.ajax({
+      method: 'GET',
+      url: `http://localhost:3000/checkin`,
+
+      success: function (response) {
+
+        if (response.length) {
+          const userList = response.filter(function (res) {
+            return res.cardnumber === searchInput;
+          });
+          if (userList.length === 0) {
+            return $('.searchMessageCheckedin').html('patient not checked in');
+          }
+          userList.forEach(element => {
+            const searchHtml = `<tr>               
+            <td>${element.cardnumber}</td>
+            <td>${element.surname}</td>
+             <td>${element.othername}</td>
+             <td>${element.dateandtime}</td>
+             <td><p data-placement="top" data-toggle="tooltip" title="View"><button class="btn btn-success btn-xs" data-title="view" data-toggle="" data-target="" data-cardNumber=${element.cardnumber} id=${element.id}><span class="glyphicon glyphicon-pencil">Checkout</span></button></p></td>
+           </tr>
+           `;
+
+
+           $("outputTableCheckedin").html(searchHtml) //Used so that it won't be appending same search output multiple times.
+          });
+        }
+      },
+    });
+  });
+
+
+  //-----End of Search Function For Checkedin Patient---------
 
 
 
