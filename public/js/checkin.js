@@ -10,6 +10,7 @@ $('.addCheckinBtn').click(function (event) {
     const reasonforvisit = $('#reasonVisit').val().trim();
     const doctorassigned = $('#doctorAssigned').val().trim();
     const dateandtime = $('#checkinDateTime').val().trim();
+    const checkouttime = ''
     //Trim is added to ensure that empty space cannot be submitted
 
 
@@ -29,7 +30,8 @@ $.ajax({
     othername,
     reasonforvisit,
     doctorassigned,
-    dateandtime
+    dateandtime,
+    checkouttime
     
   },
   beforeSend: function () {
@@ -58,22 +60,36 @@ $.ajax({
     url: `http://localhost:3000/checkin`,
 
     success: function (response) {
-
       response.forEach(element => {
-        $(".outputTableCheckedin").prepend(`<tr>        
+        if (element.checkouttime === '') {
+          $(".outputTableCheckedin").prepend(`<tr>        
         <td>${element.cardnumber}</td>
         <td>${element.surname}</td>
          <td>${element.othername}</td>
          <td>${element.dateandtime}</td>
-         <td><p data-placement="top" data-toggle="tooltip" title="View"><button class="btn btn-success btn-xs" data-title="view" data-toggle="" data-target="" data-cardNumber=${element.cardnumber} id=${element.id}><span class="glyphicon glyphicon-pencil">Checkout</span></button></p></td>
+         <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#checkoutPatient" data-cardNumber=${element.cardnumber}  id=${element.id}><span class="glyphicon glyphicon-trash">Checkout</span></button></p></td>
 
          </tr>
          `);
+        } // To show data in checkin/checkout history
+        else{
+          
+          $(".outputTableCheckinOut").prepend(`<tr>        
+        <td>${element.cardnumber}</td>
+        <td>${element.surname}</td>
+         <td>${element.othername}</td>
+         <td>${element.dateandtime}</td>
+         <td>${element.checkouttime}</td>      
+         </tr>
+         `);
+
+        }
+        
       });
     },
   });
 
-  //---Endo fo Show Checkedin Patient Function---------
+  //---End of Show Checkedin Patient Function---------
 
   //-------Search Checkedin Patient---------------
 
@@ -96,31 +112,89 @@ $.ajax({
 
         if (response.length) {
           const userList = response.filter(function (res) {
+            
+            
             return res.cardnumber === searchInput;
           });
+          
+          
           if (userList.length === 0) {
             return $('.searchMessageCheckedin').html('patient not checked in');
           }
+          $(".outputTableCheckedin").empty();
           userList.forEach(element => {
-            const searchHtml = `<tr>               
+            
+            $(".outputTableCheckedin").prepend(`<tr>               
             <td>${element.cardnumber}</td>
             <td>${element.surname}</td>
              <td>${element.othername}</td>
              <td>${element.dateandtime}</td>
-             <td><p data-placement="top" data-toggle="tooltip" title="View"><button class="btn btn-success btn-xs" data-title="view" data-toggle="" data-target="" data-cardNumber=${element.cardnumber} id=${element.id}><span class="glyphicon glyphicon-pencil">Checkout</span></button></p></td>
+             <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#checkoutPatient"  data-cardNumber=${element.cardnumber} id=${element.id}><span class="glyphicon glyphicon-trash">Checkout</span></button></p></td>
            </tr>
-           `;
+           `);
 
-
-           $("outputTableCheckedin").html(searchHtml) //Used so that it won't be appending same search output multiple times.
+            
+           
+           $(".outputTableCheckedin").html(searchHtml); //Used so that it won't be appending same search output multiple times.
           });
         }
       },
     });
   });
 
+    //-----End of Search Function For Checkedin Patient---------
+//-----Checkout Button----
+$(document).on('click', "td button", function (e) {
+  e.preventDefault();
+  if ($(this).data('target') == '#checkoutPatient') {
 
-  //-----End of Search Function For Checkedin Patient---------
+    $.ajax({
+      method: 'GET',
+      url: `http://localhost:3000/checkin?cardnumber=${$(this).data('cardnumber')}`,
+      success: function (res) {
+
+       checkout(res[0]);
+       
+        
+      }
+    });
+  }
+})
+function checkout(res){
+
+$(".checkoutBtn").click(function (e) {
+  console.log("here")
+  var today = new Date();
+  var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+  var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+  var dateTime = date+' '+time;
+    const cardnumber = res.cardnumber; 
+    const surname = res.surname;
+    const othername = res.othername;
+    const reasonforvisit = res.reasonforvisit;
+    const doctorassigned = res.doctorassigned;
+    const dateandtime = res.dateandtime;
+    const checkouttime = dateTime;
+  $.ajax({
+    url: `http://localhost:3000/checkin/${res.id}`,
+    method: 'PATCH',
+    data: {
+      cardnumber,
+      surname,
+      othername,
+      reasonforvisit,
+      doctorassigned,
+      dateandtime,
+      checkouttime
+      
+    },
+    success: function () {
+      alert("Patient has been checked out");
+      window.location.reload();
+    }
+  });
+});
+}
 
 
   //-----Show Patient History
@@ -142,6 +216,20 @@ $.ajax({
       });
     },
   });
+
+  //----Show Checkin and Checkout History
+  // $.ajax({
+  //   method: 'GET',
+  //   url: `http://localhost:3000/checkin`,
+
+  //   success: function (response) {
+
+  //     response.forEach(element => {
+
+        
+  //     });
+  //   },
+  // });
 
 
 

@@ -169,7 +169,7 @@
         method: 'GET',
         url: `http://localhost:3000/patients?cardnumber=${$(this).data('cardnumber')}`,
         success: function (res) {
-          
+
           updateForm(res[0]);
           
         }
