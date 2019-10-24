@@ -1,15 +1,50 @@
 $(document).ready(function(){
 
-//-----------Checkin Patient------------------
+//----------Checkin Patient Validation-----
+$('#cardnumber').keydown(function (e) { 
+  if (e.keyCode === 13){
+    const cardnumber = $('#cardnumber').val().trim(); 
+    if (!cardnumber){
+     return alert("Kindly input card number");
+    }
+
+    $.ajax({
+      method: 'GET',
+      url: `http://localhost:3000/patients?cardnumber=${cardnumber}`,
+      success: function (res) {
+        
+        if (res.length === 0){
+          return alert("Patient not registered. Kindly register patient before checkin")
+        }
+        
+        
+        $("#prefill").find('input[name="surname"]').val(res[0].surname);
+        $("#prefill").find('input[name="othername"]').val(res[0].othername);
+      }
+        
+  });
+}
+});
+  
+
+
+
+  //-----------Checkin Patient------------------
 
 $('.addCheckinBtn').click(function (event) {
     event.preventDefault();
+
+    var today = new Date();
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var dateTime = date+' '+time;
+
     const cardnumber = $('#cardnumber').val().trim(); 
     const surname = $('#surname').val().trim();
     const othername = $('#othername').val().trim();
     const reasonforvisit = $('#reasonVisit').val().trim();
     const doctorassigned = $('#doctorAssigned').val().trim();
-    const dateandtime = $('#checkinDateTime').val().trim();
+    const dateandtime = dateTime;
     const checkouttime = ''
     //Trim is added to ensure that empty space cannot be submitted
 

@@ -105,7 +105,7 @@
                 <div class="card">
                   <div class="card-header">Checkin A Patient</div>
                   <div class="card-body">
-                    <form name="my-form" onsubmit="" action="" method="">
+                    <form name="my-form" onsubmit="" action="" method="" id="prefill">
                         <div class="form-group row">
                           <label for="cardnumber" class="col-md-4 col-form-label text-md-right">Card Number</label>
                           <div class="col-md-6">
@@ -115,13 +115,13 @@
                       <div class="form-group row">
                         <label for="Surname" class="col-md-4 col-form-label text-md-right">Surname</label>
                         <div class="col-md-6">
-                          <input type="text" id="surname" class="form-control" name="surname" required="required">
+                          <input type="text" id="surname" class="form-control" name="surname" required="required" disabled>
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="other_name" class="col-md-4 col-form-label text-md-right">Other Names</label>
                         <div class="col-md-6">
-                          <input type="text" id="othername" class="form-control" name="othername" required="required">
+                          <input type="text" id="othername" class="form-control" name="othername" required="required" disabled>
                         </div>
                       </div>
 
@@ -139,12 +139,12 @@
                             </div>
                           </div>
 
-                          <div class="form-group row">
+                          <!-- <div class="form-group row">
                             <label for="checkin_date_time" class="col-md-4 col-form-label text-md-right">Date/Time</label>
                             <div class="col-md-6">
                               <input type="datetime-local" id="checkinDateTime" class="form-control" name="checkinDateTime" required="required">
                             </div>
-                          </div>
+                          </div> -->
 
                           <!-- <div class="form-group row">
                               <label for="doctor_assigned" class="col-md-4 col-form-label text-md-right">Status</label>

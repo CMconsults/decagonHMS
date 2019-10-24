@@ -196,7 +196,7 @@
   function updateForm(data) {
     $("#edit").find('input[name="surname"]').val(data.surname);
     $("#edit").find('input[name="othername"]').val(data.othername);
-    $("#edit").find('input[name="email"]').val(data.emailaddress);
+    $("#edit").find('input[name="emailaddress"]').val(data.emailaddress);
     $("#edit").find('input[name="dob"]').val(data.dob);
     $("#edit").find('input[name="phonenumber"]').val(data.phonenumber);
     $("#edit").find('input[name="presentaddress"]').val(data.presentaddress);
@@ -211,7 +211,8 @@
       url: `http://localhost:3000/patients/${$(this).data('id')}`,
       method: 'PATCH',
       data: $('form[name="update"]').serialize(), // It is used in form controls like <input>, <textarea>, <select> etc. It serializes the form values so that its serialized values can be used in the URL query string while making an AJAX request.
-      success: function (params) {
+      success: function (res) {
+        console.log(res);
         alert("Patient's information is successfully updated")
         window.location.reload();
       }
@@ -221,6 +222,8 @@
 
   
   function updateView(data) {
+    
+    
     $('#view div[name="cardnumber"]').text(data.cardnumber)
     $('#view div[name="surname"]').text(data.surname)
     $('#view div[name="othername"]').text(data.othername)

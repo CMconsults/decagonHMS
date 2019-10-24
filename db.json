@@ -44,26 +44,48 @@
     {
       "surname": "MESHACH",
       "othername": "ade",
-      "emailaddress": "Cmconsults2016@gmail.com",
+      "emailaddress": "CMworks@gmail.com",
       "dob": "1998-04-04",
       "phonenumber": "6306599213",
       "presentaddress": "4605 Steele Street",
       "permanentaddress": "kaduna",
       "cardnumber": "2045",
-      "id": 7
+      "id": 7,
+      "email": "dbto@gmail.com"
     },
     {
       "surname": "Adewumih",
-      "othername": "Ednut",
-      "emailaddress": "alade@gmail.com",
+      "othername": "Taiwo",
+      "emailaddress": "chris@gmail.com",
       "dob": "1994-02-22",
       "phonenumber": "05050505050",
       "presentaddress": "wakt street",
       "permanentaddress": "lompiy lane 3",
       "cardnumber": "2026",
-      "id": 8
+      "id": 8,
+      "email": "chris@gmail.com"
     }
   ],
-  
-  "checkin": []
+  "checkin": [
+    {
+      "cardnumber": "2045",
+      "surname": "MESHACH",
+      "othername": "ade",
+      "reasonforvisit": "I love the doctor",
+      "doctorassigned": "Dr. Chris",
+      "dateandtime": "2019-10-24T20:14",
+      "checkouttime": "2019-10-24 20:15:11",
+      "id": 1
+    },
+    {
+      "cardnumber": "2024",
+      "surname": "Smith",
+      "othername": "Wigglesworth",
+      "reasonforvisit": "Evangelism",
+      "doctorassigned": "Dr. Taiwo",
+      "dateandtime": "2019-10-24 20:20:32",
+      "checkouttime": "2019-10-24 20:20:56",
+      "id": 2
+    }
+  ]
 }
